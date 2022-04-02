@@ -13,3 +13,7 @@ on how to install an extension for debugging.
 ### Releases
 
 TODO: Need to be signed, see https://extensionworkshop.com/documentation/publish/submitting-an-add-on/
+
+### Updates
+
+TODO: Like this https://extensionworkshop.com/documentation/manage/updating-your-extension/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission

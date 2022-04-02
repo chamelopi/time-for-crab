@@ -10,6 +10,6 @@
   "scripts": {
     "run": "web-ext run --browser-console --source-dir ."
   },
-  "author": "",
+  "author": "chamelopi",
   "license": "ISC"
 }

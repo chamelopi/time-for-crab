@@ -19,7 +19,7 @@ const States = {
     REMOVED: 4
 };
 FRIEND_THRESHOLD = 30;
-LOVE_THRESHOLD = 35;
+LOVE_THRESHOLD = 33;
 
 
 const outerBorder = () => {

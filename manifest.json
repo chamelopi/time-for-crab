@@ -16,7 +16,8 @@
     "browser_specific_settings": {
         "gecko": {
             "id": "time-for-crab@chamelopi.github.com",
-            "strict_min_version": "42.0"
+            "strict_min_version": "42.0",
+            "update_url": "https://raw.githubusercontent.com/chamelopi/time-for-crab/master/update.json"
         }
     }
 }
