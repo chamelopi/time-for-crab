@@ -1,0 +1,15 @@
+{
+  "name": "time-for-crab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "time-for-crab.js",
+  "devDependencies": {
+    "web-ext": "^6.8.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "run": "web-ext run --browser-console --source-dir ."
+  },
+  "author": "",
+  "license": "ISC"
+}
