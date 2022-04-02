@@ -23,7 +23,7 @@ LOVE_THRESHOLD = 33;
 
 
 const outerBorder = () => {
-    return [window.innerWidth, window.innerHeight];
+    return [window.innerWidth - 50, window.innerHeight - 50];
 };
 
 const withProbability = (fraction) => {

@@ -21,7 +21,6 @@ TODO: Like this https://extensionworkshop.com/documentation/manage/updating-your
 
 
 TODOs:
-- Fix bug where crabs can move outside the bottom and right window borders
 - Try to use `requestAnimationFrame` instead of `setInterval`
 - Move mood text to the top right
 - Make crabs say 'hand' if you touch them?
