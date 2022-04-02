@@ -61,6 +61,8 @@ class Crab {
         this.state = States.SUMMONED;
         this.friendMeter = 0;
         this.touching = false;
+        // Update count since last mood displayed
+        this.moodTimer = 0;
 
         this.elem = document.createElement("div");
         this.elem.classList.add("time-for-crab-crab");
@@ -94,25 +96,15 @@ class Crab {
 
         // Update friendship state if touched with mouse
         if (this.touching && this.state === States.SUMMONED) {
-            this.friendMeter += choice([0, 0, 1, 1, 1, 1, 2, 2, 3, 5]);
+            this.updateFriendship();
+        }
 
-            if (this.friendMeter > (FRIEND_THRESHOLD / 2)) {
-                this.mood("Friend?");
-            }
-
-            // Love threshold is slightly higher than friend threshold, therefore requires luck for a choice of 3 or 5 above
-            if (this.friendMeter > LOVE_THRESHOLD) {
-                this.state = States.BELOVED;
-                this.mood("Love <3");
-                ui.beloved++;
-                ui.updateStats();
-            }
-            if (this.friendMeter > FRIEND_THRESHOLD) {
-                this.state = States.BEFRIENDED;
-                this.mood("Friend <3");
-                ui.befriended++;
-                ui.updateStats();
-            }
+        // Show friendship / love in mood text
+        if (this.touching && this.state === States.BEFRIENDED) {
+            this.mood("friend <3");
+        }
+        if (this.touching && this.state === States.BELOVED) {
+            this.mood("love <3");
         }
 
         // Remove captured crabs after a short time
@@ -122,6 +114,33 @@ class Crab {
                 this.elem.style.display = "none";
                 this.state = States.REMOVED;
             }
+        }
+
+        this.updateMood();
+    }
+
+    updateFriendship() {
+        this.friendMeter += choice([0, 0, 1, 1, 1, 1, 2, 2, 3, 5]);
+
+        if (this.friendMeter > (FRIEND_THRESHOLD / 2) && withProbability(0.5)) {
+            this.mood("friend?");
+        }
+
+        // Love threshold is slightly higher than friend threshold, therefore requires luck for a choice of 3 or 5 above
+        if (this.friendMeter >= LOVE_THRESHOLD) {
+            this.state = States.BELOVED;
+            ui.beloved++;
+            ui.updateStats();
+        }
+        if (this.friendMeter > FRIEND_THRESHOLD && this.friendMeter < LOVE_THRESHOLD) {
+            this.state = States.BEFRIENDED;
+            ui.befriended++;
+            ui.updateStats();
+        }
+
+        // If none of the moods above were applied, show "hand"
+        if (withProbability(0.75)) {
+            this.mood("hand");
         }
     }
 
@@ -142,6 +161,8 @@ class Crab {
             this.elem.innerHTML = CAPTURED;
             this.elem.appendChild(this.moodElem);
             this.state = States.CAPTURED;
+            // Force mood update by setting timer to 0
+            this.moodTimer = 0;
             this.mood(":(");
 
             ui.captured++;
@@ -150,7 +171,18 @@ class Crab {
     }
 
     mood(mood) {
-        this.moodElem.innerHTML = mood;
+        if (this.moodTimer <= 0) {
+            this.moodElem.innerHTML = mood;
+            this.moodTimer = 3;
+        }
+    }
+
+    updateMood() {
+        if (this.moodTimer > 0) {
+            this.moodTimer--;
+        } else {
+            this.moodElem.innerHTML = "";
+        }
     }
 }
 

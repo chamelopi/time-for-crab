@@ -12,18 +12,13 @@
     font-size: 10pt;
     padding: 2px 5px;
 
-    bottom: 60%;
-    left: -60%;
-    visibility: hidden;
+    top: -15px;
+    left: -10px;
     z-index: 101;
     position: relative;
 }
 
-.time-for-crab-crab:hover .mood {
-    visibility: visible;
-}
-
-.time-for-crab-crab:hover .mood:empty {
+.time-for-crab-crab .mood:empty {
     visibility: hidden;
 }
 
