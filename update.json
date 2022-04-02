@@ -1,7 +1,13 @@
 {
     "addons": {
         "time-for-crab@chamelopi.github.com": {
-            "updates": []
+            "updates": [
+                {
+                    "version": "1.0.1",
+                    "update_link": "https://github.com/chamelopi/time-for-crab/releases/download/1.0.1/time_for_crab-1.0.1-fx.xpi",
+                    "update_hash": "sha256:b72ff2a04b804718cb6c5d7a60dfe82c7c5e8ddd2ca08be9667f9f91ee05425d"
+                }
+            ]
         }
     }
 }
