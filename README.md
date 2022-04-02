@@ -12,7 +12,7 @@ on how to install an extension for debugging.
 
 ### Releases
 
-TODO: Need to be signed, see https://extensionworkshop.com/documentation/publish/submitting-an-add-on/
+Download the latext XPI-File from [here](https://github.com/chamelopi/time-for-crab/releases)
 
 ### Updates
 
