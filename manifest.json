@@ -12,5 +12,11 @@
             "js": ["time-for-crab.js"],
             "css": ["style.css"]
         }
-    ]
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "time-for-crab@chamelopi.github.com",
+            "strict_min_version": "42.0"
+        }
+    }
 }
