@@ -18,9 +18,10 @@ const States = {
     BELOVED: 3,
     REMOVED: 4
 };
-FRIEND_THRESHOLD = 30;
-LOVE_THRESHOLD = 33;
-
+const FRIEND_THRESHOLD = 30;
+const LOVE_THRESHOLD = 33;
+// Offset of the crab's center from its top/left corner
+const CRAB_SIZE_OFFSET = 14;
 
 const outerBorder = () => {
     return [window.innerWidth - 50, window.innerHeight - 50];
@@ -95,16 +96,35 @@ class Crab {
         }
 
         // Update friendship state if touched with mouse
-        if (this.touching && this.state === States.SUMMONED) {
-            this.updateFriendship();
+        if (this.touching) {
+            if (this.state === States.SUMMONED) {
+                this.updateFriendship();
+            }
+    
+            // Show friendship / love in mood text
+            if (this.state === States.BEFRIENDED) {
+                this.mood("friend <3");
+            }
+            if (this.state === States.BELOVED) {
+                this.mood("love <3");
+            }
         }
 
-        // Show friendship / love in mood text
-        if (this.touching && this.state === States.BEFRIENDED) {
-            this.mood("friend <3");
-        }
-        if (this.touching && this.state === States.BELOVED) {
-            this.mood("love <3");
+        // If crab has no mood yet, check if it sees an image
+        if (this.state === States.SUMMONED && !this.touching && this.moodTimer <= 0 && withProbability(0.5)) {
+            // Uses offset to get tag at the center of the crab
+            let options = document.elementsFromPoint(this.elem.offsetLeft + CRAB_SIZE_OFFSET, this.elem.offsetTop + CRAB_SIZE_OFFSET);
+            
+            // Images on the tumblr dashboards are inside 'figure' tags (and `elementsFromPoints` only detects those)
+            for (let option of options) {
+                if (option.tagName.toLowerCase() === "figure") {
+                    let img = option.getElementsByTagName("img")[0];
+                    if (img) {
+                        this.mood((img.getAttribute("alt") || "image").toLowerCase());
+                    }
+                    break;
+                }
+            }
         }
 
         // Remove captured crabs after a short time

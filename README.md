@@ -22,4 +22,4 @@ TODO: Like this https://extensionworkshop.com/documentation/manage/updating-your
 
 TODOs:
 - Handle captured crabs more efficiently
-- Make crabs say images' alt-text on img tags
+- Refactor table creation to utilize DOM API instead of innerHTML
